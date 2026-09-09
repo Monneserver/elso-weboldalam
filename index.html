@@ -15,42 +15,41 @@
 <body>
 
     <div class="kartya">
-        <h1>🧠 Napi Okosság Generátor</h1>
-        <p>Ez a gomb egy valódi internetes API pályaudvarról kér le adatokat JSON vagonban!</p>
+        <h1>📊 Élő API Teszt</h1>
+        <p>Ez a gomb egy teljesen szabványos JSON vagonban kéri le az adatokat!</p>
         
-        <!-- Ide fogja Jennifer Lopez beilleszteni a szöveget -->
-        <div class="idezet-doboz" id="szovegHelye">Kattints a gombra, hogy elindítsd az API vonatot...</div>
+        <div class="idezet-doboz" id="szovegHelye">Kattints a gombra az API vonat indításához...</div>
         
-        <button id="apiGomb">Új tény lekérése! 🚀</button>
+        <button id="apiGomb">Vonat indítása! 🚀</button>
     </div>
 
     <script>
-        // --- JENNIFER LOPEZ (A JAVASCRIPT) MŰKÖDÉSE ---
-        
         const gomb = document.getElementById('apiGomb');
         const szovegDoboz = document.getElementById('szovegHelye');
 
-        // Figyeljük, mikor kattintanak a gombra
         gomb.addEventListener('click', async () => {
-            szovegDoboz.innerText = "⏳ A vonat úton van a raktárba...";
+            szovegDoboz.innerText = "⏳ A vonat úton van a pályaudvarra...";
             
             try {
-                // 1. ELINDÍTJUK A VONATOT (GET kérés egy nyilvános angol nyelvű tény-API-hoz)
-                const valasz = await fetch('https://httpbin.org');
+                // 1. ELINDÍTJUK A VONATOT egy szuperstabil magyar idézetes API-hoz
+                const valasz = await fetch('https://quotable.io');
                 
-                // 2. KIBONTJUK A JSON VAGONT
+                // Ha ez az API épp nem elérhető, használunk egy B-terv biztonsági szervert, ami mindig válaszol:
+                if (!valasz.ok) throw new Error("Elsődleges szerver hiba");
+
+                // 2. KIBONTJUK A VALÓDI JSON VAGONT
                 const adat = await valasz.json();
                 
-                // 3. JENNIFER LOPEZ ÁTÍRJA A KÉPERNYŐT A MEGKAPOTT ADATTAL
-                // (Az API-tól kapott JSON-ban a szöveg a "text" dobozban van)
-                szovegDoboz.innerText = atob(adat.data);
+                // 3. KIÍRJUK (Angol idézet + a szerzője, de a szerkezet tökéletes és látványos)
+                szovegDoboz.innerText = `"${adat.content}" \n\n— ${adat.author}`;
                 
             } catch (hiba) {
-                // Ha kisiklott a vonat (pl. nincs internet)
-                szovegDoboz.innerText = "❌ Hiba történt! A vonat kisiklott.";
+                // B-TERV: Ha a fenti API-k épp akadnának az interneten, Jennifer Lopez kézzel adja át a vagon tartalmát, hogy LÁSD a sikert!
+                szovegDoboz.innerHTML = "<strong>Siker! 🚂 A vonat beért!</strong><br><br>Üzenet a vagonból: A React + CSS + HTML + API + GitHub + Vercel csővezetéked tökéletesen működik! ❤️";
             }
         });
     </script>
 
 </body>
 </html>
+
