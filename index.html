@@ -43,7 +43,7 @@
                 
                 // 3. JENNIFER LOPEZ ÁTÍRJA A KÉPERNYŐT A MEGKAPOTT ADATTAL
                 // (Az API-tól kapott JSON-ban a szöveg a "text" dobozban van)
-                szovegDoboz.innerText = adat.text;
+                szovegDoboz.innerText = atob(adat.data);
                 
             } catch (hiba) {
                 // Ha kisiklott a vonat (pl. nincs internet)
