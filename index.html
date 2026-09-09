@@ -36,7 +36,7 @@
             
             try {
                 // 1. ELINDÍTJUK A VONATOT (GET kérés egy nyilvános angol nyelvű tény-API-hoz)
-                const valasz = await fetch('https://jsph.pl');
+                const valasz = await fetch('https://httpbin.org');
                 
                 // 2. KIBONTJUK A JSON VAGONT
                 const adat = await valasz.json();
